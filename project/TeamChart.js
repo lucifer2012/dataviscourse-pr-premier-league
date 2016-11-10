@@ -26,26 +26,52 @@ TeamChart.prototype.init = function(){
         .attr("height",self.svgHeight)
 }
 
+TeamChart.prototype.tooltip_render = function (tooltip_data) {
+    var self = this;
+    return tooltip_data;
+}
+
 TeamChart.prototype.update = function(value){
     var self = this;
+
+    //load csv file
     d3.csv(value + ".csv", function (data) {
         self.data = data
     });
-    var teams = [];
 
-    for(var i = 0; i < 20; i++){
-        teams[i] = self.data[i].HomeTeam;
+    //to get names of the clubs
+    var teams = [];
+    var counter = 0;
+    while (teams.length != 20){
+        if(teams.indexOf(self.data[counter].HomeTeam) == -1){
+            teams.push(self.data[counter].HomeTeam);
+        }
+        counter++;
     }
     teams = teams.sort();
-    console.log(teams);
+
+    //To add tooltips
+    tip = d3.tip().attr('class', 'd3-tip')
+        .direction('s')
+        .offset(function() {
+            return [0,150];
+        })
+        .html(function (d) {
+            return self.tooltip_render(d);
+        });
+
+
+    //To add badges of teams
     var svg = d3.select("#team-chart").select("svg").node().getBoundingClientRect();
     var svgWidth = svg.width;
     var svgHeight = svg.height;
 
     var imgs = d3.select("#team-chart").select("svg").selectAll("image").data(teams);
 
-    imgs.enter()
-        .append("image")
+    imgs.exit().remove();
+
+    imgs = imgs.enter().append("image").merge(imgs);
+    imgs
         .attr("x",function (d,i) {
             return svgWidth / 20 * i + 25;
         })
@@ -55,6 +81,10 @@ TeamChart.prototype.update = function(value){
         .attr("xlink:href", function (d) {
             return "figs/" + d + ".png";
         });
+    d3.select("#team-chart").select("svg").call(tip);
+    imgs
+        .on("mouseover", tip.show)
+        .on("mouseout",tip.hide);
 
 }
 
