@@ -119,7 +119,7 @@ h2{
     position: absolute;
     text-align: center;
     width: 110px;
-    height: 30px;
+    height: 35px;
     padding: 2px;
     font: 12px sans-serif;
     background: skyblue;
@@ -137,4 +137,9 @@ h2{
 h3{
     text-anchor:middle;
     font-size: 32px;
+}
+
+.selectTeam{
+    width: 75px;
+    height: 75px;
 }
