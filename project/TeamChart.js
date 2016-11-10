@@ -27,9 +27,10 @@ TeamChart.prototype.init = function(){
 }
 
 TeamChart.prototype.update = function(value){
-    console.log(value);
     var self = this;
-    self.data = d3.csv(season + ".csv");
+    d3.csv(value + ".csv", function (data) {
+        self.data = data
+    });
     var teams = [];
 
     for(var i = 0; i < 20; i++){
@@ -40,7 +41,7 @@ TeamChart.prototype.update = function(value){
     var svg = d3.select("#team-chart").select("svg").node().getBoundingClientRect();
     var svgWidth = svg.width;
     var svgHeight = svg.height;
-    //<img src="figs/Arsenal.png" alt="Mountain View" style="width:30px;height:30px;">
+
     var imgs = d3.select("#team-chart").select("svg").selectAll("image").data(teams);
 
     imgs.enter()
