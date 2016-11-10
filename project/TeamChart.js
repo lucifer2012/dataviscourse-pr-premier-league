@@ -18,7 +18,7 @@ TeamChart.prototype.init = function(){
     //Gets access to the div element created for this chart from HTML
     self.svgBounds = divyearChart.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
-    self.svgHeight = 100;
+    self.svgHeight = 120;
 
     //creates svg element within the div
     self.svg = divyearChart.append("svg")
@@ -82,6 +82,25 @@ TeamChart.prototype.update = function(value){
         .attr("xlink:href", function (d) {
             return "figs/" + d + ".png";
         });
+
+    imgs.on("click", function (d,i) {
+        //calendarChart.update(teams[i])
+        imgs.classed("selectTeam", false)
+            .attr("x",function (d,j) {
+            return svgWidth / 20 * j + 25;
+        })
+            .attr("y", 30);
+
+        imgs.filter(function (d,j) {
+            return j==i;
+        })
+            .attr("x",function (d,j) {
+                return svgWidth / 20 * i + 12.5;
+            })
+            .attr("y", 20)
+            .classed("selectTeam", true);
+    });
+
     d3.select("#team-chart").select("svg").call(tip);
     imgs
         .on("mouseover", tip.show)
