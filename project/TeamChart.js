@@ -51,10 +51,11 @@ TeamChart.prototype.update = function(value){
     teams = teams.sort();
 
     //To add tooltips
-    tip = d3.tip().attr('class', 'd3-tip')
-        .direction('s')
+    tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .direction("s")
         .offset(function() {
-            return [0,150];
+            return [0,0];
         })
         .html(function (d) {
             return self.tooltip_render(d);
