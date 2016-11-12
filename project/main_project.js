@@ -7,7 +7,6 @@ var teamchart;
     var instance = null;
 
     function init() {
-
         d3.csv("15-16.csv", function (data) {
             teamchart = new TeamChart(data);
             teamchart.update("15-16");

@@ -1,13 +1,10 @@
 /**
  * Created by Chen on 11/9/16.
  */
-// function print() {
-//     console.log(document.getElementById('season').value);
-// }
-
-function TeamChart(data) {
+var data_set;
+function TeamChart() {
     var self = this;
-    self.data = data;
+    //self.data = data;
     self.init();
 };
 
@@ -34,77 +31,88 @@ TeamChart.prototype.tooltip_render = function (tooltip_data) {
 TeamChart.prototype.update = function(value){
     var self = this;
 
+    var pc = new PropertyChart();
+    var year = value;
     //load csv file
     d3.csv(value + ".csv", function (data) {
-        self.data = data
+        data.forEach(function (d) {
+            d.FTHG = +d.FTHG;
+            d.FTAG = +d.FTAG;
+        })
+        data_set = data;
+        main_update();
     });
 
-    //to get names of the clubs
-    var teams = [];
-    var counter = 0;
-    while (teams.length != 20){
-        if(teams.indexOf(self.data[counter].HomeTeam) == -1){
-            teams.push(self.data[counter].HomeTeam);
+    function main_update() {
+        //to get names of the clubs
+        var teams = [];
+        var counter = 0;
+        while (teams.length != 20){
+            if(teams.indexOf(data_set[counter].HomeTeam) == -1){
+                teams.push(data_set[counter].HomeTeam);
+            }
+            counter++;
         }
-        counter++;
-    }
-    teams = teams.sort();
-
-    //To add tooltips
-    tip = d3.tip()
-        .attr('class', 'd3-tip')
-        .direction("s")
-        .offset(function() {
-            return [0,0];
-        })
-        .html(function (d) {
-            return self.tooltip_render(d);
-        });
-
-
-    //To add badges of teams
-    var svg = d3.select("#team-chart").select("svg").node().getBoundingClientRect();
-    var svgWidth = svg.width;
-    var svgHeight = svg.height;
-
-    var imgs = d3.select("#team-chart").select("svg").selectAll("image").data(teams);
-
-    imgs.exit().remove();
-
-    imgs = imgs.enter().append("image").merge(imgs);
-    imgs
-        .attr("x",function (d,i) {
-            return svgWidth / 20 * i + 25;
-        })
-        .attr("y", 30)
-        .attr("height", 50)
-        .attr("width", 50)
-        .attr("xlink:href", function (d) {
-            return "figs/" + d + ".png";
-        });
-
-    imgs.on("click", function (d,i) {
-        //calendarChart.update(teams[i])
-        imgs.classed("selectTeam", false)
-            .attr("x",function (d,j) {
-            return svgWidth / 20 * j + 25;
-        })
-            .attr("y", 30);
-
-        imgs.filter(function (d,j) {
-            return j==i;
-        })
-            .attr("x",function (d,j) {
-                return svgWidth / 20 * i + 12.5;
+        teams = teams.sort();
+        console.log(teams);
+        //To add tooltips
+        tip = d3.tip()
+            .attr('class', 'd3-tip')
+            .direction("s")
+            .offset(function() {
+                return [0,0];
             })
-            .attr("y", 20)
-            .classed("selectTeam", true);
-    });
+            .html(function (d) {
+                return self.tooltip_render(d);
+            });
 
-    d3.select("#team-chart").select("svg").call(tip);
-    imgs
-        .on("mouseover", tip.show)
-        .on("mouseout",tip.hide);
 
+        //To add badges of teams
+        var svg = d3.select("#team-chart").select("svg").node().getBoundingClientRect();
+        var svgWidth = svg.width;
+        //var svgHeight = svg.height;
+
+        var imgs = d3.select("#team-chart").select("svg").selectAll("image").data(teams);
+
+        imgs.exit().remove();
+
+        imgs = imgs.enter().append("image").merge(imgs);
+        imgs
+            .attr("x",function (d,i) {
+                return svgWidth / 20 * i + 25;
+            })
+            .attr("y", 30)
+            .attr("height", 50)
+            .attr("width", 50)
+            .attr("xlink:href", function (d) {
+                return "figs/" + d + ".png";
+            });
+
+        imgs.on("click", function (d,i) {
+            //calendarChart.update(teams[i])
+            pc.update(teams[i], data_set);
+
+            imgs.classed("selectTeam", false)
+                .attr("x",function (d,j) {
+                    return svgWidth / 20 * j + 25;
+                })
+                .attr("y", 30);
+
+            imgs.filter(function (d,j) {
+                return j==i;
+            })
+                .attr("x",function (d,j) {
+                    return svgWidth / 20 * i + 12.5;
+                })
+                .attr("y", 20)
+                .classed("selectTeam", true);
+
+        });
+
+        d3.select("#team-chart").select("svg").call(tip);
+        imgs
+            .on("mouseover", tip.show)
+            .on("mouseout",tip.hide);
+    }
 }
 
