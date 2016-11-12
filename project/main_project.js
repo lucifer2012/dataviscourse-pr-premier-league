@@ -10,6 +10,8 @@ var teamchart;
         d3.csv("15-16.csv", function (data) {
             teamchart = new TeamChart(data);
             teamchart.update("15-16");
+            monthchart = new MonthChart(data);
+            monthchart.update("15-16");
         });
     }
 

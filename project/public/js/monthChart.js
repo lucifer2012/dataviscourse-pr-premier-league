@@ -4,29 +4,50 @@
  *
  * @param shiftChart an instance of the ShiftChart class
  */
-function ElectoralVoteChart(){
+function MonthChart(data){
 
     var self = this;
+    self.monthlist = self.parseMonths(data);
     self.init();
+
 };
 
+MonthChart.prototype.parseMonths = function(data){
+    //TODO parsedata
+    return [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //8
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], //9
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //10
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], //11
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //12
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //1
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29], //2
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //3
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], //4
+        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]]; //5
+}
 /**
  * Initializes the svg elements required for this chart
  */
-ElectoralVoteChart.prototype.init = function(){
+MonthChart.prototype.init = function(){
     var self = this;
-    self.margin = {top: 30, right: 20, bottom: 30, left: 50};
+    self.margin = {top: 10, right: 20, bottom: 30, left: 50};
 
     //Gets access to the div element created for this chart from HTML
-    var divelectoralVotes = d3.select("#electoral-vote").classed("content", true);
-    self.svgBounds = divelectoralVotes.node().getBoundingClientRect();
+    var divmonthChart = d3.select("#month-chart").classed("fullView", true);
+    self.svgBounds = divmonthChart.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
-    self.svgHeight = 150;
-
+    self.svgHeight = 50;
+    console.log(self.monthlist);
+    self.rectWidth = self.svgWidth/(self.monthlist.length);
+    console.log(self.rectWidth)
     //creates svg element within the div
-    self.svg = divelectoralVotes.append("svg")
+    self.svg = divmonthChart.append("svg")
         .attr("width",self.svgWidth)
-        .attr("height",self.svgHeight)
+        .attr("height",self.svgHeight);
+
+    self.svg.append('g').attr('id', 'rects');
+    self.svg.append('g').attr('id', 'months');
+    self.svg.append('g').attr('id', 'string')
 };
 
 /**
@@ -34,6 +55,8 @@ ElectoralVoteChart.prototype.init = function(){
  *
  * @param party an ID for the party that is being referred to.
  */
+
+/*
 ElectoralVoteChart.prototype.chooseClass = function (party) {
     var self = this;
     if (party == "R"){
@@ -47,6 +70,7 @@ ElectoralVoteChart.prototype.chooseClass = function (party) {
     }
 }
 
+*/
 /**
  * Creates the stacked bar chart, text content and tool tips for electoral vote chart
  *
@@ -54,7 +78,7 @@ ElectoralVoteChart.prototype.chooseClass = function (party) {
  * @param colorScale global quantile scale based on the winning margin between republicans and democrats
  */
 
-ElectoralVoteChart.prototype.update = function(electionResult, colorScale){
+MonthChart.prototype.update = function(selectedYear){
     var self = this;
 
     // ******* TODO: PART II *******
@@ -80,7 +104,50 @@ ElectoralVoteChart.prototype.update = function(electionResult, colorScale){
 
     //HINT: Use the chooseClass method to style your elements based on party wherever necessary.
 
+    var rects = self.svg.select('#rects')
+        .selectAll('rect')
+        .data(self.monthlist)
+        .enter()
+        .append('rect');
 
+    rects.attr('x', function(d,i) {return (i) * self.rectWidth;})
+        .attr('y', 10)
+        .attr('width', self.rectWidth)
+        .attr('height', self.svgHeight - 20)
+        .attr('class', 'tile')
+        .attr('fill', function(d,i){
+            if (i % 2 == 0) return 'green';
+            else return 'lightgreen';
+        })
+        .on('click',function(d,i){displayMonth(i);});
+
+    displayMonth = function(j){
+        var currentMonth = self.monthlist[j];
+
+        self.svg.select('#rects')
+            .selectAll('rect')
+            .remove();
+        //console.log(self.monthlist[i]);
+
+        var newrects = self.svg.select('#rects')
+            .selectAll('rect')
+            .data(currentMonth)
+            .enter()
+            .append('rect');
+
+        newrects.attr('x', function(d,i) {return (i) * self.svgWidth/currentMonth.length;})
+            .attr('y', 10)
+            .attr('width', self.svgWidth/currentMonth.length)
+            .attr('height', self.svgHeight - 20)
+            .attr('class', 'tile')
+            .attr('fill', function(d,i){
+                if (i % 2 == 0) return 'green';
+                else return 'lightgreen';
+            })
+
+    }
+
+/*
     function sortStates(a,b) {
         return a - b;
     };
@@ -206,14 +273,14 @@ ElectoralVoteChart.prototype.update = function(electionResult, colorScale){
         .text(repub_vote)
         .attr("class", "republican");
 
-
+*/
 
     //******* TODO: PART V *******
     //Implement brush on the bar chart created above.
     //Implement a call back method to handle the brush end event.
     //Call the update method of shiftChart and pass the data corresponding to brush selection.
     //HINT: Use the .brush class to style the brush.
-
+/*
     var brushed = function () {
         //d3.event.selection
         self.shiftchart = new ShiftChart;
@@ -237,4 +304,5 @@ ElectoralVoteChart.prototype.update = function(electionResult, colorScale){
         .on('end', brushed);
 
     self.svg.append('g').attr('class', 'brush').call(brush);
+    */
 };
