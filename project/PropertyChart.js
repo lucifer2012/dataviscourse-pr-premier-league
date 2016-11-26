@@ -61,22 +61,33 @@ PropertyChart.prototype.update = function (team, teamsData) {
         }
         counter++;
     }
-    console.log(teams);
-    console.log(team);
+    //console.log(teams);
+    //console.log(team);
     teams = teams.sort();
 
     var teams_goals_made = {};
     var teams_goals_conceded = {};
+    var teams_goals_made_first = {};
+    var team_goals_conceded_first = {};
+
     for(var i = 0; i < teams.length; i++){
         teams_goals_conceded[teams[i]] = 0;
         teams_goals_made[teams[i]] = 0;
+        teams_goals_made_first[teams[i]] = 0;
+        team_goals_conceded_first[teams[i]] = 0;
     }
     teamsData.forEach(function (d) {
         teams_goals_made[d.HomeTeam] += d.FTHG;
         teams_goals_made[d.AwayTeam] += d.FTAG;
         teams_goals_conceded[d.AwayTeam] += d.FTHG;
         teams_goals_conceded[d.HomeTeam] += d.FTAG;
+
+        teams_goals_made_first[d.HomeTeam] += d.HTHG;
+        team_goals_conceded_first[d.AwayTeam] += d.HTAG;
     })
+    //console.log(teams_goals_made_first);
+    //console.log(teams_goals_made);
+
 
     //attack_rank is made in increasing order, the team that scores the most goals is the last item in the list
     //defense_rank is made in decreasing order, the team that lose the least goals is the last item in the list
@@ -98,6 +109,28 @@ PropertyChart.prototype.update = function (team, teamsData) {
         .attr("dx", 30)
         .attr("dy", 150)
         .text("Defense Ability:");
+
+    self.svg
+        .append("text")
+        .attr("dx", 20)
+        .attr("dy", 180)
+        .text("Goals made in first half");
+    self.svg
+        .append("text")
+        .attr("dx", 250)
+        .attr("dy", 180)
+        .text("Goals made in second half");
+
+    self.svg
+        .append("text")
+        .attr("dx", 20)
+        .attr("dy", 225)
+        .text("Goals conceded in first half");
+    self.svg
+        .append("text")
+        .attr("dx", 230)
+        .attr("dy", 225)
+        .text("Goals conceded in second half");
 
     //Capabilities Display
     var attack = attack_rank.indexOf(team) / 2 + 1;
@@ -123,5 +156,41 @@ PropertyChart.prototype.update = function (team, teamsData) {
             .attr("height", 13)
             .attr("fill", "gold");
     }
+
+
+    var pos_goals_made = teams_goals_made_first[team] / teams_goals_made[team] * 400;
+    var pos_goals_conceded = team_goals_conceded_first[team] / teams_goals_conceded[team] * 400;
+
+    //goals made
+    self.svg
+        .append("rect")
+        .attr("x", 30)
+        .attr("y", 190)
+        .attr("width", pos_goals_made)
+        .attr("height", 15)
+        .attr("fill", "lightblue");
+    self.svg
+        .append("rect")
+        .attr("x",pos_goals_made + 30)
+        .attr("y", 190)
+        .attr("width", 400 - pos_goals_made)
+        .attr("height", 15)
+        .attr("fill", "steelblue");
+
+    //goals conceded
+    self.svg
+        .append("rect")
+        .attr("x", 30)
+        .attr("y", 230)
+        .attr("width", pos_goals_conceded)
+        .attr("height", 15)
+        .attr("fill", "lightblue");
+    self.svg
+        .append("rect")
+        .attr("x",pos_goals_conceded + 30)
+        .attr("y", 230)
+        .attr("width", 400 - pos_goals_conceded)
+        .attr("height", 15)
+        .attr("fill", "steelblue");
 
 }

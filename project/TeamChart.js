@@ -38,6 +38,8 @@ TeamChart.prototype.update = function(value){
         data.forEach(function (d) {
             d.FTHG = +d.FTHG;
             d.FTAG = +d.FTAG;
+            d.HTHG = +d.HTHG;
+            d.HTAG = +d.HTAG;
         })
         data_set = data;
         main_update();
