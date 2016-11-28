@@ -1,10 +1,10 @@
 /**
  * Created by Chen on 11/9/16.
  */
-var data_set;
 function TeamChart() {
     var self = this;
     //self.data = data;
+    self.data_set = [];
     self.init();
 };
 
@@ -31,6 +31,7 @@ TeamChart.prototype.tooltip_render = function (tooltip_data) {
 TeamChart.prototype.update = function(value){
     var self = this;
     var pc = new PropertyChart();
+    var mc = new MonthChart();
 
     var year = value;
     //load csv file
@@ -42,8 +43,9 @@ TeamChart.prototype.update = function(value){
             d.HTAG = +d.HTAG;
             d.Ranking = +d.Ranking;
         })
-        data_set = data;
+        self.data_set = data;
         main_update();
+
     });
 
     function main_update() {
@@ -51,8 +53,8 @@ TeamChart.prototype.update = function(value){
         var teams = [];
         var counter = 0;
         while (teams.length != 20){
-            if(teams.indexOf(data_set[counter].HomeTeam) == -1){
-                teams.push(data_set[counter].HomeTeam);
+            if(teams.indexOf(self.data_set[counter].HomeTeam) == -1){
+                teams.push(self.data_set[counter].HomeTeam);
             }
             counter++;
         }
@@ -88,10 +90,12 @@ TeamChart.prototype.update = function(value){
             .attr("xlink:href", function (d) {
                 return "figs/" + d + ".png";
             });
-
+        imgs.classed("selectTeam", false);
+        
         imgs.on("click", function (d,i) {
             //calendarChart.update(teams[i])
-            pc.update(teams[i], data_set);
+            pc.update(teams[i], self.data_set);
+            mc.update(teams[i], self.data_set);
 
             imgs.classed("selectTeam", false)
                 .attr("x",function (d,j) {

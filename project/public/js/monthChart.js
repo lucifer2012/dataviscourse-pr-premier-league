@@ -4,32 +4,41 @@
  *
  * @param shiftChart an instance of the ShiftChart class
  */
-function MonthChart(data){
+function MonthChart(){
 
     var self = this;
-    self.monthlist = self.parseMonths(data);
+    self.selectedTeam = ""
+    self.matchlist = self.parseMatches([],"");
     self.init();
 
 };
 
-MonthChart.prototype.parseMonths = function(data){
-    //TODO parsedata
-    return [[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //8
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], //9
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //10
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], //11
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //12
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //1
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29], //2
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31], //3
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30], //4
-        [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31]]; //5
+MonthChart.prototype.parseMatches = function(data, selectedTeam){
+
+    if (selectedTeam == "")
+    {
+        return [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37];
+    }
+    //parsedata
+    //console.log(data);
+
+    var teamMatchData = [];
+
+    var count = 0;
+    while(teamMatchData.length != 38) {
+        //console.log(data[count]);
+        if (data[count]["HomeTeam"] == selectedTeam || data[count]["AwayTeam"] == selectedTeam)
+            teamMatchData.push(data[count]);
+        count++;
+    }
+    return teamMatchData;
 }
 /**
  * Initializes the svg elements required for this chart
  */
 MonthChart.prototype.init = function(){
     var self = this;
+
     self.margin = {top: 10, right: 20, bottom: 30, left: 50};
 
     //Gets access to the div element created for this chart from HTML
@@ -37,10 +46,11 @@ MonthChart.prototype.init = function(){
     self.svgBounds = divmonthChart.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
     self.svgHeight = 50;
-    console.log(self.monthlist);
-    self.rectWidth = self.svgWidth/(self.monthlist.length);
-    console.log(self.rectWidth)
+    //console.log(self.monthlist);
+    self.rectWidth = self.svgWidth/(self.matchlist.length);
+    //console.log(self.rectWidth)
     //creates svg element within the div
+    divmonthChart.selectAll("svg").remove();
     self.svg = divmonthChart.append("svg")
         .attr("width",self.svgWidth)
         .attr("height",self.svgHeight);
@@ -78,7 +88,7 @@ ElectoralVoteChart.prototype.chooseClass = function (party) {
  * @param colorScale global quantile scale based on the winning margin between republicans and democrats
  */
 
-MonthChart.prototype.update = function(selectedYear){
+MonthChart.prototype.update = function(selectedTeam, selectedData){
     var self = this;
 
     // ******* TODO: PART II *******
@@ -103,10 +113,21 @@ MonthChart.prototype.update = function(selectedYear){
     //HINT: Use .electoralVotesNote class to style this text element
 
     //HINT: Use the chooseClass method to style your elements based on party wherever necessary.
+    //console.log("data");
+    //console.log(selectedData);
+    //console.log("team");
+    //console.log(selectedTeam);
+    self.matchlist = self.parseMatches(selectedData, selectedTeam);
+    self.selectedTeam = selectedTeam;
+
+    self.svg.select('#rects')
+        .selectAll('rect')
+        .remove();
+
 
     var rects = self.svg.select('#rects')
         .selectAll('rect')
-        .data(self.monthlist)
+        .data(self.matchlist)
         .enter()
         .append('rect');
 
@@ -116,12 +137,26 @@ MonthChart.prototype.update = function(selectedYear){
         .attr('height', self.svgHeight - 20)
         .attr('class', 'tile')
         .attr('fill', function(d,i){
-            if (i % 2 == 0) return 'green';
-            else return 'lightgreen';
+            console.log(d);
+            if (d["HomeTeam"] == self.selectedTeam){
+                if(d["FTR"] == "H")
+                    return 'green';
+                else if(d["FTR"] == "A")
+                    return 'red'
+                else
+                    return 'gray'}
+            else {
+                if(d["FTR"] == "A")
+                    return 'lightgreen';
+                else if(d["FTR"] == "H")
+                    return 'pink'
+                else
+                    return 'lightgray'
+            };
         })
-        .on('click',function(d,i){displayMonth(i);});
-
-    displayMonth = function(j){
+        //.on('click',function(d,i){displayMonth(i);});
+/*
+       displayMonth = function(j){
         var currentMonth = self.monthlist[j];
 
         self.svg.select('#rects')
@@ -144,8 +179,17 @@ MonthChart.prototype.update = function(selectedYear){
                 if (i % 2 == 0) return 'green';
                 else return 'lightgreen';
             })
+            .on('click', function(d,i){})
+            .on('dblclick',function(d,i){
+                console.log("here");
+                self.svg.select('#rects')
+                    .selectAll('rect')
+                    .remove();
+
+                displaySeason();} )
 
     }
+    */
 
 /*
     function sortStates(a,b) {
@@ -305,4 +349,4 @@ MonthChart.prototype.update = function(selectedYear){
 
     self.svg.append('g').attr('class', 'brush').call(brush);
     */
-};
+}
