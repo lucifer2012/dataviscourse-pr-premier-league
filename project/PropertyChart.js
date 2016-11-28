@@ -93,8 +93,9 @@ PropertyChart.prototype.update = function (team, teamsData) {
     //defense_rank is made in decreasing order, the team that lose the least goals is the last item in the list
     var attack_rank = Object.keys(teams_goals_made).sort(function(a,b){return teams_goals_made[a]-teams_goals_made[b]});
     var defense_rank = Object.keys(teams_goals_conceded).sort(function(a,b){return teams_goals_conceded[b]-teams_goals_conceded[a]});
-    //console.log(attack_rank);
-    //console.log(defense_rank);
+
+    var gc = new GlobalChart();
+    gc.update(teamsData, attack_rank, defense_rank);
 
     //Add explanation text to the html
     d3.select("#property-chart").select("svg").selectAll("text").remove();

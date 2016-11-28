@@ -10,15 +10,15 @@ function TeamChart() {
 
 TeamChart.prototype.init = function(){
     self.margin = {top: 10, right: 20, bottom: 30, left: 50};
-    var divyearChart = d3.select("#team-chart").classed("fullView", true);
+    var teamChart = d3.select("#team-chart").classed("fullView", true);
 
     //Gets access to the div element created for this chart from HTML
-    self.svgBounds = divyearChart.node().getBoundingClientRect();
+    self.svgBounds = teamChart.node().getBoundingClientRect();
     self.svgWidth = self.svgBounds.width - self.margin.left - self.margin.right;
     self.svgHeight = 120;
 
     //creates svg element within the div
-    self.svg = divyearChart.append("svg")
+    self.svg = teamChart.append("svg")
         .attr("width",self.svgWidth)
         .attr("height",self.svgHeight)
 }
@@ -30,16 +30,17 @@ TeamChart.prototype.tooltip_render = function (tooltip_data) {
 
 TeamChart.prototype.update = function(value){
     var self = this;
-
     var pc = new PropertyChart();
+
     var year = value;
     //load csv file
-    d3.csv(value + ".csv", function (data) {
+    d3.csv(year + ".csv", function (data) {
         data.forEach(function (d) {
             d.FTHG = +d.FTHG;
             d.FTAG = +d.FTAG;
             d.HTHG = +d.HTHG;
             d.HTAG = +d.HTAG;
+            d.Ranking = +d.Ranking;
         })
         data_set = data;
         main_update();
@@ -56,7 +57,6 @@ TeamChart.prototype.update = function(value){
             counter++;
         }
         teams = teams.sort();
-        console.log(teams);
         //To add tooltips
         tip = d3.tip()
             .attr('class', 'd3-tip')
@@ -72,7 +72,6 @@ TeamChart.prototype.update = function(value){
         //To add badges of teams
         var svg = d3.select("#team-chart").select("svg").node().getBoundingClientRect();
         var svgWidth = svg.width;
-        //var svgHeight = svg.height;
 
         var imgs = d3.select("#team-chart").select("svg").selectAll("image").data(teams);
 
