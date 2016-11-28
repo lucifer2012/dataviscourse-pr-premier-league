@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1aa00a1e-46ed-4db0-966b-19d29911c9fa" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/project/GlobalChart.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/11-12.csv" afterPath="$PROJECT_DIR$/project/11-12.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/12-13.csv" afterPath="$PROJECT_DIR$/project/12-13.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/13-14.csv" afterPath="$PROJECT_DIR$/project/13-14.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/14-15.csv" afterPath="$PROJECT_DIR$/project/14-15.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/15-16.csv" afterPath="$PROJECT_DIR$/project/15-16.csv" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/PropertyChart.js" afterPath="$PROJECT_DIR$/project/PropertyChart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/TeamChart.js" afterPath="$PROJECT_DIR$/project/TeamChart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/main_project.js" afterPath="$PROJECT_DIR$/project/main_project.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/project.html" afterPath="$PROJECT_DIR$/project/project.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/GlobalChart.js" afterPath="$PROJECT_DIR$/project/GlobalChart.js" />
     </list>
     <ignored path="dataviscourse-pr-premier-league.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,8 +30,8 @@
       <file leaf-file-name="project.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/project.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+            <state relative-caret-position="348">
+              <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -58,7 +50,7 @@
       <file leaf-file-name="TeamChart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/TeamChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="225">
               <caret line="93" column="30" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="30" />
               <folding />
             </state>
@@ -68,8 +60,8 @@
       <file leaf-file-name="PropertyChart.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/project/PropertyChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="93" column="56" selection-start-line="93" selection-start-column="52" selection-end-line="93" selection-end-column="56" />
+            <state relative-caret-position="30">
+              <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -78,11 +70,31 @@
       <file leaf-file-name="GlobalChart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/GlobalChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+            <state relative-caret-position="387">
+              <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
               <folding>
                 <element signature="n#!!doc;n#GlobalChart#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/myProject_vis/homework_chen/2016-dataviscourse-homework/hw3/script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="990">
+              <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="script.js" pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/Desktop/myProject_vis/homework_chen/2016-dataviscourse-homework/hw2/script.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2592">
+              <caret line="224" column="72" selection-start-line="224" selection-start-column="72" selection-end-line="224" selection-end-column="72" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -102,10 +114,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/project/project.html" />
         <option value="$PROJECT_DIR$/project/main_project.js" />
         <option value="$PROJECT_DIR$/project/PropertyChart.js" />
         <option value="$PROJECT_DIR$/project/TeamChart.js" />
+        <option value="$PROJECT_DIR$/project/project.html" />
         <option value="$PROJECT_DIR$/project/GlobalChart.js" />
       </list>
     </option>
@@ -214,10 +226,60 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/myProject_vis/homework_chen/2016-dataviscourse-homework/hw2/script.js" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
     <property name="FullScreen" value="true" />
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
+      <method />
+    </configuration>
+    <configuration default="true" type="DartTestRunConfigurationType" factoryName="Dart Test">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavaScriptTestRunnerKarma" factoryName="Karma">
+      <config-file value="" />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
+      <method />
+    </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+    <configuration default="true" type="cucumber.js" factoryName="Cucumber.js">
+      <option name="cucumberJsArguments" value="" />
+      <option name="executablePath" />
+      <option name="filePath" />
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <method />
+    </configuration>
+    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
+      <command value="run-script" />
+      <scripts />
+      <node-interpreter value="project" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <working-directory />
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui />
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -235,12 +297,12 @@
       <workItem from="1480058065191" duration="14000" />
       <workItem from="1480058085374" duration="5551000" />
       <workItem from="1480203267994" duration="1020000" />
-      <workItem from="1480290864936" duration="5102000" />
+      <workItem from="1480290864936" duration="15344000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11687000" />
+    <option name="totallyTimeSpent" value="21929000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -334,10 +396,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/project.html">
+    <entry file="file://$USER_HOME$/Downloads/solutions/script.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="39" column="6" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
+        <state relative-caret-position="435">
+          <caret line="50" column="42" selection-start-line="50" selection-start-column="8" selection-end-line="50" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/myProject_vis/homework_chen/2016-dataviscourse-homework/hw2/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2592">
+          <caret line="224" column="72" selection-start-line="224" selection-start-column="72" selection-end-line="224" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Desktop/myProject_vis/homework_chen/2016-dataviscourse-homework/hw3/script.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="71" column="4" selection-start-line="71" selection-start-column="4" selection-end-line="71" selection-end-column="23" />
           <folding />
         </state>
       </provider>
@@ -350,26 +428,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/project/TeamChart.js">
+    <entry file="file://$PROJECT_DIR$/project/project.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="93" column="30" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="30" />
+        <state relative-caret-position="348">
+          <caret line="38" column="40" selection-start-line="38" selection-start-column="40" selection-end-line="38" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/PropertyChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="93" column="56" selection-start-line="93" selection-start-column="52" selection-end-line="93" selection-end-column="56" />
+        <state relative-caret-position="30">
+          <caret line="20" column="21" selection-start-line="20" selection-start-column="21" selection-end-line="20" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/project/TeamChart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="93" column="30" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/project/GlobalChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="28" selection-end-column="49" />
+        <state relative-caret-position="387">
+          <caret line="38" column="28" selection-start-line="38" selection-start-column="28" selection-end-line="38" selection-end-column="28" />
           <folding>
             <element signature="n#!!doc;n#GlobalChart#0" expanded="false" />
           </folding>
