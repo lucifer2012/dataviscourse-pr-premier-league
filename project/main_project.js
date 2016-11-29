@@ -2,6 +2,7 @@
  * Created by Chen on 11/8/16.
  */
 var teamchart;
+var globalchart;
 
 (function () {
     var instance = null;
@@ -10,6 +11,7 @@ var teamchart;
         d3.csv("15-16.csv", function (data) {
             teamchart = new TeamChart();
             teamchart.update("15-16");
+            globalchart = new GlobalChart();
         });
     }
 

@@ -61,8 +61,7 @@ PropertyChart.prototype.update = function (team, teamsData) {
         }
         counter++;
     }
-    //console.log(teams);
-    //console.log(team);
+
     teams = teams.sort();
 
     var teams_goals_made = {};

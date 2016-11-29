@@ -24,7 +24,7 @@ TeamChart.prototype.init = function(){
 }
 
 TeamChart.prototype.tooltip_render = function (tooltip_data) {
-    var self = this;
+    //var self = this;
     return tooltip_data;
 }
 
@@ -50,6 +50,7 @@ TeamChart.prototype.update = function(value){
 
     function main_update() {
         //to get names of the clubs
+        document.getElementById("dataset").value = "attack";
         var teams = [];
         var counter = 0;
         while (teams.length != 20){
@@ -94,6 +95,7 @@ TeamChart.prototype.update = function(value){
         
         imgs.on("click", function (d,i) {
             //calendarChart.update(teams[i])
+            document.getElementById("dataset").value = "attack";
             pc.update(teams[i], self.data_set);
             mc.update(teams[i], self.data_set);
 
