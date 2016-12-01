@@ -29,7 +29,7 @@ GlobalChart.prototype.update = function (teamsData, attack_rank, defense_rank) {
     }
     
     var sorted_final_ranking = Object.keys(final_ranking).sort(function (a,b) {
-        return final_ranking[a] - final_ranking[b];
+        return final_ranking[b] - final_ranking[a];
     })
 
     tip = d3.tip()
@@ -68,10 +68,10 @@ GlobalChart.prototype.update = function (teamsData, attack_rank, defense_rank) {
     circles.enter()
         .append("circle")
         .attr("cx", function (d) {
-            return xscale(sorted_final_ranking.indexOf(d));
+            return xscale(sorted_final_ranking.indexOf(d)+1);
         })
         .attr("cy", function (d) {
-            return yscale(attack_rank.indexOf(d));
+            return yscale(attack_rank.indexOf(d)+1);
         })
         .attr("r", 10)
         .attr("fill", "gold");
@@ -147,16 +147,16 @@ GlobalChart.prototype.updatebybutton = function (season,property){
         }
 
         var attack_rank = Object.keys(teams_goals_made).sort(function (a, b) {
-            return teams_goals_made[a] - teams_goals_made[b]
+            return teams_goals_made[b] - teams_goals_made[a]
         });
         var defense_rank = Object.keys(teams_goals_conceded).sort(function (a, b) {
-            return teams_goals_conceded[b] - teams_goals_conceded[a]
+            return teams_goals_conceded[a] - teams_goals_conceded[b]
         });
         var chances_make_rank = Object.keys(teams_chances_make).sort(function (a, b) {
-            return teams_chances_make[a] - teams_chances_make[b]
+            return teams_chances_make[b] - teams_chances_make[a]
         });
         var chances_take_rank = Object.keys(teams_chances_take).sort(function (a, b) {
-            return teams_chances_take[a] - teams_chances_take[b]
+            return teams_chances_take[b] - teams_chances_take[a]
         });
 
         var final_ranking = {};
@@ -190,17 +190,17 @@ GlobalChart.prototype.updatebybutton = function (season,property){
         circles.enter()
             .append("circle")
             .attr("cx", function (d) {
-                return xscale(sorted_final_ranking.indexOf(d));
+                return xscale(sorted_final_ranking.indexOf(d)+1);
             })
             .attr("cy", function (d) {
                 if(property == "attack"){
-                    return yscale(attack_rank.indexOf(d));
+                    return yscale(attack_rank.indexOf(d)+1);
                 }else if(property == "defense"){
-                    return yscale(defense_rank.indexOf(d));
+                    return yscale(defense_rank.indexOf(d)+1);
                 }else if(property == "Chances-make"){
-                    return yscale(chances_make_rank.indexOf(d));
+                    return yscale(chances_make_rank.indexOf(d)+1);
                 }else if(property == "Chances-take"){
-                    return yscale(chances_take_rank.indexOf(d));
+                    return yscale(chances_take_rank.indexOf(d)+1);
                 }
             })
             .attr("r", 10)
