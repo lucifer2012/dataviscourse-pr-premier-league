@@ -1,6 +1,8 @@
 /**
  * Created by Chen on 2016/11/26.
  */
+var sorted_final_ranking
+var rank
 function GlobalChart() {
     var self = this;
     self.init();
@@ -17,7 +19,7 @@ GlobalChart.prototype.init = function () {
     self.svg.append("g").attr("id", "circles")
 }
 
-GlobalChart.prototype.update = function (teamsData, attack_rank, defense_rank) {
+GlobalChart.prototype.update = function (teamsData, attack_rank) {
     var self = this;
     var final_ranking = {};
     var counter = 0;
@@ -28,8 +30,8 @@ GlobalChart.prototype.update = function (teamsData, attack_rank, defense_rank) {
         counter++;
     }
     
-    var sorted_final_ranking = Object.keys(final_ranking).sort(function (a,b) {
-        return final_ranking[b] - final_ranking[a];
+    sorted_final_ranking = Object.keys(final_ranking).sort(function (a,b) {
+        return final_ranking[a] - final_ranking[b];
     })
 
     tip = d3.tip()
@@ -76,16 +78,35 @@ GlobalChart.prototype.update = function (teamsData, attack_rank, defense_rank) {
         .attr("r", 10)
         .attr("fill", "gold");
 
-    d3.select("#global-chart").select("svg").call(tip);
-    circles
-        .on("mouseover", tip.show)
-        .on("mouseout",tip.hide);
+    //add explanation for final ranking
+    svg.select("text").remove();
+    svg.append("text")
+        .attr("dx", 800)
+        .attr("dy", 490)
+        .text("Final Ranking");
 }
 
-GlobalChart.prototype.tooltip_render = function (tooltip_data) {
-    return tooltip_data;
-}
 
+GlobalChart.prototype.select_update = function (d,i) {
+    d3.select("#circles").selectAll("circle").attr("fill", "gold");
+    rank = sorted_final_ranking.indexOf(d) + 1;
+    d3.select("#circles")
+        .selectAll("circle")
+        .attr("fill", function (d,i) {
+            if(rank == i){
+                return "steelblue";
+            } else {
+                return "gold";
+            }
+        })
+        .attr("r", function (d,i) {
+            if(rank == i){
+                return 15;
+            }else {
+                return 10;
+            }
+        });
+}
 
 GlobalChart.prototype.updatebybutton = function (season,property){
     var self = this;
@@ -168,7 +189,7 @@ GlobalChart.prototype.updatebybutton = function (season,property){
             counter++;
         }
 
-        var sorted_final_ranking = Object.keys(final_ranking).sort(function (a, b) {
+        sorted_final_ranking = Object.keys(final_ranking).sort(function (a, b) {
             return final_ranking[a] - final_ranking[b];
         })
 
@@ -203,12 +224,25 @@ GlobalChart.prototype.updatebybutton = function (season,property){
                     return yscale(chances_take_rank.indexOf(d)+1);
                 }
             })
-            .attr("r", 10)
-            .attr("fill", "gold");
+            .attr("r", function (d,i) {
+                if(rank == i){
+                    return 15;
+                }else{
+                    return 10;
+                }
+            })
+            .attr("fill", function (d,i) {
+                if(rank == i){
+                    return "steelblue";
+                } else {
+                    return "gold";
+                }
+            });
 
-        d3.select("#global-chart").select("svg").call(tip);
-        circles
-            .on("mouseover", tip.show)
-            .on("mouseout",tip.hide);
+        svg.select("text").remove();
+        svg.append("text")
+            .attr("dx", 800)
+            .attr("dy", 490)
+            .text("Final Ranking");
     }
 };

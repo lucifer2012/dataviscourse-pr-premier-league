@@ -137,7 +137,6 @@ MonthChart.prototype.update = function(selectedTeam, selectedData){
         .attr('height', self.svgHeight - 20)
         .attr('class', 'tile')
         .attr('fill', function(d,i){
-            console.log(d);
             if (d["HomeTeam"] == self.selectedTeam){
                 if(d["FTR"] == "H")
                     return 'green';

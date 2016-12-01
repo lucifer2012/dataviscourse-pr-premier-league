@@ -32,6 +32,7 @@ TeamChart.prototype.update = function(value){
     var self = this;
     var pc = new PropertyChart();
     var mc = new MonthChart();
+    var gc = new GlobalChart();
 
     var year = value;
     //load csv file
@@ -94,10 +95,10 @@ TeamChart.prototype.update = function(value){
         imgs.classed("selectTeam", false);
         
         imgs.on("click", function (d,i) {
-            //calendarChart.update(teams[i])
             document.getElementById("dataset").value = "attack";
             pc.update(teams[i], self.data_set);
             mc.update(teams[i], self.data_set);
+            gc.select_update(d,i);
 
             imgs.classed("selectTeam", false)
                 .attr("x",function (d,j) {
@@ -115,7 +116,6 @@ TeamChart.prototype.update = function(value){
                 .classed("selectTeam", true);
 
         });
-
         d3.select("#team-chart").select("svg").call(tip);
         imgs
             .on("mouseover", tip.show)

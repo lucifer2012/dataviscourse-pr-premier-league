@@ -90,7 +90,7 @@ PropertyChart.prototype.update = function (team, teamsData) {
 
     //attack_rank is made in increasing order, the team that scores the most goals is the last item in the list
     //defense_rank is made in decreasing order, the team that lose the least goals is the last item in the list
-    var attack_rank = Object.keys(teams_goals_made).sort(function(a,b){return teams_goals_made[a]-teams_goals_made[b]});
+    var attack_rank = Object.keys(teams_goals_made).sort(function(a,b){return teams_goals_made[b]-teams_goals_made[a]});
     var defense_rank = Object.keys(teams_goals_conceded).sort(function(a,b){return teams_goals_conceded[b]-teams_goals_conceded[a]});
 
     var gc = new GlobalChart();
