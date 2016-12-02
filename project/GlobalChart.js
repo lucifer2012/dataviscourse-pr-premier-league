@@ -34,17 +34,6 @@ GlobalChart.prototype.update = function (teamsData, attack_rank) {
         return final_ranking[a] - final_ranking[b];
     })
 
-    tip = d3.tip()
-        .attr('class', 'd3-tip-g')
-        .direction("s")
-        .offset(function() {
-            return [0,0];
-        })
-        .html(function (d,i) {
-            console.log(d);
-            return self.tooltip_render(d);
-        });
-
     //create the axis
     var svg = d3.select("#global-chart").select("svg");
 

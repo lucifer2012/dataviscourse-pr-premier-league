@@ -24,7 +24,6 @@ TeamChart.prototype.init = function(){
 }
 
 TeamChart.prototype.tooltip_render = function (tooltip_data) {
-    //var self = this;
     return tooltip_data;
 }
 
@@ -87,8 +86,8 @@ TeamChart.prototype.update = function(value){
                 return svgWidth / 20 * i + 25;
             })
             .attr("y", 30)
-            .attr("height", 50)
-            .attr("width", 50)
+            .attr("height", 40)
+            .attr("width", 40)
             .attr("xlink:href", function (d) {
                 return "figs/" + d + ".png";
             });
