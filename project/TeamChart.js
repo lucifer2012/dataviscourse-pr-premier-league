@@ -93,7 +93,12 @@ TeamChart.prototype.update = function(value){
                 return "figs/" + d + ".png";
             });
         imgs.classed("selectTeam", false);
-        
+
+        //initialize
+        pc.update("Arsenal", self.data_set);
+        mc.update("Arsenal", self.data_set);
+        gc.select_update("Arsenal", 0);
+
         imgs.on("click", function (d,i) {
             document.getElementById("dataset").value = "attack";
             pc.update(teams[i], self.data_set);

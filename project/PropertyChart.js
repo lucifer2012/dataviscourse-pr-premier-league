@@ -84,8 +84,6 @@ PropertyChart.prototype.update = function (team, teamsData) {
         teams_goals_made_first[d.HomeTeam] += d.HTHG;
         team_goals_conceded_first[d.AwayTeam] += d.HTAG;
     })
-    //console.log(teams_goals_made_first);
-    //console.log(teams_goals_made);
 
 
     //attack_rank is made in increasing order, the team that scores the most goals is the last item in the list
