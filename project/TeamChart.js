@@ -9,7 +9,7 @@ function TeamChart() {
 };
 
 TeamChart.prototype.init = function(){
-    self.margin = {top: 10, right: 20, bottom: 30, left: 50};
+    self.margin = {top: 10, right: 10, bottom: 30, left: 0};
     var teamChart = d3.select("#team-chart").classed("fullView", true);
 
     //Gets access to the div element created for this chart from HTML
@@ -114,7 +114,7 @@ TeamChart.prototype.update = function(value){
                 return j==i;
             })
                 .attr("x",function (d,j) {
-                    return svgWidth / 20 * i + 12.5;
+                    return svgWidth / 20 * i + 7.5;
                 })
                 .attr("y", 20)
                 .classed("selectTeam", true);
