@@ -50,6 +50,7 @@ TeamChart.prototype.update = function(value){
 
     function main_update() {
         //to get names of the clubs
+        d3.select(".d3-tip s").remove();
         document.getElementById("dataset").value = "attack";
         var teams = [];
         var counter = 0;
