@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1aa00a1e-46ed-4db0-966b-19d29911c9fa" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/TeamChart.js" afterPath="$PROJECT_DIR$/project/TeamChart.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/project/project.html" afterPath="$PROJECT_DIR$/project/project.html" />
-    </list>
+    <list default="true" id="1aa00a1e-46ed-4db0-966b-19d29911c9fa" name="Default" comment="" />
     <ignored path="dataviscourse-pr-premier-league.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -72,8 +68,8 @@
       <file leaf-file-name="TeamChart.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/project/TeamChart.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="417">
-              <caret line="116" column="50" selection-start-line="116" selection-start-column="50" selection-end-line="116" selection-end-column="50" />
+            <state relative-caret-position="447">
+              <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
               <folding />
             </state>
           </provider>
@@ -373,12 +369,12 @@
       <workItem from="1480656829851" duration="1162000" />
       <workItem from="1480697926288" duration="317000" />
       <workItem from="1480700715401" duration="223000" />
-      <workItem from="1480703753569" duration="3552000" />
+      <workItem from="1480703753569" duration="3627000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45035000" />
+    <option name="totallyTimeSpent" value="45110000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -822,8 +818,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/project/TeamChart.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="417">
-          <caret line="116" column="50" selection-start-line="116" selection-start-column="50" selection-end-line="116" selection-end-column="50" />
+        <state relative-caret-position="447">
+          <caret line="118" column="30" selection-start-line="118" selection-start-column="30" selection-end-line="118" selection-end-column="30" />
           <folding />
         </state>
       </provider>
