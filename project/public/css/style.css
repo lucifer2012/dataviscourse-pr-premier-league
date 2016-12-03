@@ -28,21 +28,10 @@ h1 {
     /*stroke: #e5e5e5;*/
 }
 
-.electoralVotesNote, .votesPercentageNote{
-    text-anchor:middle;
-    font-size: 24px;
-}
-
-.electoralVoteText, .votesPercentageText{
-    font-size: 35px;
-}
 .end{
     text-anchor:end;
 }
 
-.nomineeInfoText{
-    font-size: 36px;
-}
 .Axis{
     stroke: #eee;
     stroke-width: 4;
@@ -58,46 +47,9 @@ h1 {
     float:right;
 }
 
-.electoralVotes{
-    stroke: #eee;
-}
-
-.middlePoint{
-    stroke: #eee;
-}
-
 .fullView{
     display: inline-block;
     width: 100%;
-}
-
-.yearChart{
-    stroke: #FFF;
-}
-
-.republican{
-    fill: #de2d26;
-    color: #de2d26;
-    text-anchor:end;
-}
-.democrat{
-    fill: #3182bd;
-    text-anchor:start;
-    color: #3182bd;
-}
-.independent{
-    fill: #45AD6A;
-    color: #45AD6A;
-    text-anchor:start;
-}
-
-.votesPercentage{
-    stroke: #eee;
-}
-
-.highlighted{
-    stroke: #404040;;
-    stroke-width:4;
 }
 
 .brush .selection {
@@ -132,11 +84,6 @@ h2{
     font-size:18px;
     font-family: "Arial Black";
 
-}
-
-h3{
-    text-anchor:middle;
-    font-size: 32px;
 }
 
 .selectTeam{
